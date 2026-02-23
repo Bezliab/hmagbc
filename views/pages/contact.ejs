@@ -1,0 +1,110 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+<div class="page active" id="page-contact">
+<div class="page-hero">
+<h1>Get In Touch</h1>
+<p>
+          We'd love to hear from you. Reach out and we'll respond within 24
+          hours.
+        </p>
+</div>
+<section>
+<div class="container">
+<div class="contact-grid">
+<div class="contact-form-wrap">
+<h3>Send a Message</h3>
+<div class="form-group">
+<label>Full Name *</label>
+<input placeholder="Your full name" required="" type="text"/>
+</div>
+<div class="form-group">
+<label>Email Address *</label>
+<input placeholder="your@email.com" required="" type="email"/>
+</div>
+<div class="form-group">
+<label>Phone Number (optional)</label>
+<input placeholder="+234 000 000 0000" type="tel"/>
+</div>
+<div class="form-group">
+<label>Subject</label>
+<select>
+<option>General Inquiry</option>
+<option>Prayer Request</option>
+<option>Event Information</option>
+<option>Membership</option>
+<option>Counselling</option>
+<option>Partnership / Giving</option>
+<option>Media Request</option>
+</select>
+</div>
+<div class="form-group">
+<label>Message *</label>
+<textarea placeholder="Share your message, prayer request, or inquiry..." required=""></textarea>
+</div>
+<button class="btn-primary" onclick="submitContact()" style="width: 100%; justify-content: center">
+                Send Message ✦
+              </button>
+<div class="form-success" id="contact-success">
+                ✅ Thank you! Your message has been sent. We'll respond within
+                24 hours.
+              </div>
+</div>
+<div class="contact-info-wrap">
+<div class="contact-info-card">
+<h3>Find Us</h3>
+<div class="info-row">
+<div class="info-icon">📍</div>
+<div>
+<div class="info-label">Address</div>
+<div class="info-val">
+                      15 Covenant Way, GRA Phase 2<br/>Lagos State, Nigeria
+                    </div>
+</div>
+</div>
+<div class="info-row">
+<div class="info-icon">📞</div>
+<div>
+<div class="info-label">Phone</div>
+<div class="info-val">
+                      +234 801 234 5678<br/>+234 802 345 6789
+                    </div>
+</div>
+</div>
+<div class="info-row">
+<div class="info-icon">✉️</div>
+<div>
+<div class="info-label">Email</div>
+<div class="info-val">
+                      hello@gracecovenantchurch.org<br/>admin@gracecovenantchurch.org
+                    </div>
+</div>
+</div>
+<div class="info-row">
+<div class="info-icon">🕐</div>
+<div>
+<div class="info-label">Service Times</div>
+<div class="info-val">
+                      Sunday: 7:30 AM &amp; 10:00 AM<br/>Wednesday: 6:00 PM<br/>Friday:
+                      7:00 PM
+                    </div>
+</div>
+</div>
+</div>
+<div class="map-placeholder">📍 Google Map Embed Goes Here</div>
+<div style="
+                  display: flex;
+                  gap: 10px;
+                  margin-top: 16px;
+                  flex-wrap: wrap;
+                ">
+<button class="btn-outline" style="flex: 1">Facebook</button>
+<button class="btn-outline" style="flex: 1">YouTube</button>
+<button class="btn-outline" style="flex: 1">Instagram</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<%- include('../partials/footer') %>
+<%- include('../partials/scripts') %>

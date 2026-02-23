@@ -1,0 +1,504 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+<div class="page active" id="page-admin">
+<!-- Login Screen -->
+<div class="admin-login" id="admin-login">
+<div class="login-card">
+<div class="login-logo">
+<div class="login-logo-icon">🔒</div>
+<h2>Admin Dashboard</h2>
+<p>His Mercy and Glory Bible Church · Staff Portal</p>
+</div>
+<div class="login-error" id="login-error">
+            Incorrect email or password. Please try again.
+          </div>
+<div class="form-group">
+<label>Email Address</label>
+<input id="admin-email" placeholder="admin@gracecovenantchurch.org" type="email"/>
+</div>
+<div class="form-group">
+<label>Password</label>
+<input id="admin-pass" onkeypress="if (event.key === 'Enter') doLogin();" placeholder="••••••••" type="password"/>
+</div>
+<button class="btn-primary" onclick="doLogin()" style="width: 100%; justify-content: center; margin-top: 4px">
+            Sign In →
+          </button>
+<p style="
+              text-align: center;
+              font-size: 0.8rem;
+              color: var(--text-muted);
+              margin-top: 16px;
+            ">
+            Demo: admin@church.org / admin123
+          </p>
+</div>
+</div>
+<!-- Dashboard (shown after login) -->
+<div id="admin-dashboard" style="display: none">
+<div class="admin-layout">
+<div class="admin-sidebar">
+<div class="admin-sidebar-title">
+              His Mercy and Glory
+              <span>Admin Portal</span>
+</div>
+<div class="admin-nav-item active" onclick="showAdminPanel('overview', this)">
+              📊 Overview
+            </div>
+<div class="admin-nav-item" onclick="showAdminPanel('announcements', this)">
+              📢 Announcements
+            </div>
+<div class="admin-nav-item" onclick="showAdminPanel('events-admin', this)">
+              📅 Events
+            </div>
+<div class="admin-nav-item" onclick="showAdminPanel('sermons-admin', this)">
+              🎙 Sermons
+            </div>
+<div class="admin-nav-item" onclick="showAdminPanel('resources-admin', this)">
+              📁 Resources
+            </div>
+<div class="admin-nav-item" onclick="showAdminPanel('upload', this)">
+              ⬆ Upload Files
+            </div>
+<div class="admin-nav-item" onclick="doLogout()" style="
+                margin-top: auto;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding-top: 16px;
+              ">
+              🚪 Sign Out
+            </div>
+</div>
+<div class="admin-content">
+<!-- Overview Panel -->
+<div class="admin-panel active" id="panel-overview">
+<div class="admin-header">
+<h2>Dashboard Overview</h2>
+<span style="font-size: 0.85rem; color: var(--text-muted)">Welcome back, Admin · Sun, Feb 22, 2026</span>
+</div>
+<div class="admin-stat-grid">
+<div class="admin-stat">
+<div class="admin-stat-num">4</div>
+<div class="admin-stat-label">Active Announcements</div>
+</div>
+<div class="admin-stat red">
+<div class="admin-stat-num">8</div>
+<div class="admin-stat-label">Upcoming Events</div>
+</div>
+<div class="admin-stat yellow">
+<div class="admin-stat-num">24</div>
+<div class="admin-stat-label">Sermons Published</div>
+</div>
+<div class="admin-stat">
+<div class="admin-stat-num">16</div>
+<div class="admin-stat-label">Resources Available</div>
+</div>
+</div>
+<div style="
+                  background: white;
+                  border-radius: var(--radius);
+                  padding: 24px;
+                  box-shadow: var(--shadow-sm);
+                ">
+<h3 style="
+                    font-family: var(--font-head);
+                    font-size: 1.3rem;
+                    margin-bottom: 16px;
+                  ">
+                  Quick Actions
+                </h3>
+<div style="display: flex; gap: 12px; flex-wrap: wrap">
+<button class="btn-primary" onclick="
+                      showAdminPanel(
+                        'announcements',
+                        document.querySelector('.admin-nav-item:nth-child(2)'),
+                      )
+                    ">
+                    + New Announcement
+                  </button>
+<button class="btn-red" onclick="
+                      showAdminPanel(
+                        'events-admin',
+                        document.querySelector('.admin-nav-item:nth-child(3)'),
+                      )
+                    ">
+                    + New Event
+                  </button>
+<button class="btn-outline" onclick="
+                      showAdminPanel(
+                        'upload',
+                        document.querySelector('.admin-nav-item:nth-child(7)'),
+                      )
+                    ">
+                    ⬆ Upload File
+                  </button>
+<button class="btn-outline" onclick="
+                      showAdminPanel(
+                        'sermons-admin',
+                        document.querySelector('.admin-nav-item:nth-child(4)'),
+                      )
+                    ">
+                    + Add Sermon
+                  </button>
+</div>
+</div>
+</div>
+<!-- Announcements Panel -->
+<div class="admin-panel" id="panel-announcements">
+<div class="admin-header">
+<h2>Announcements</h2>
+<button class="btn-primary">+ New Announcement</button>
+</div>
+<div style="
+                  background: white;
+                  border-radius: var(--radius);
+                  padding: 24px;
+                  box-shadow: var(--shadow-sm);
+                  margin-bottom: 24px;
+                ">
+<h4 style="margin-bottom: 16px; color: var(--text)">
+                  Create / Edit Announcement
+                </h4>
+<div class="form-group">
+<label>Title</label><input placeholder="Announcement title..." type="text"/>
+</div>
+<div class="form-group">
+<label>Body</label><textarea placeholder="Full announcement text..." style="min-height: 100px"></textarea>
+</div>
+<button class="btn-primary">Save Announcement</button>
+</div>
+<table class="admin-table">
+<thead>
+<tr>
+<th>Title</th>
+<th>Date Posted</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Annual Convention Registration Open</td>
+<td>Feb 12, 2026</td>
+<td><span class="tag-green card-tag">Active</span></td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+<tr>
+<td>Communion Sunday – February 23</td>
+<td>Feb 18, 2026</td>
+<td><span class="tag-green card-tag">Active</span></td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+<tr>
+<td>Youth Camp 2026 – Applications Open</td>
+<td>Feb 10, 2026</td>
+<td><span class="tag-green card-tag">Active</span></td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+<tr>
+<td>Sunday Bulletins Now Available Online</td>
+<td>Feb 5, 2026</td>
+<td><span class="tag-silver card-tag">Published</span></td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Events Panel -->
+<div class="admin-panel" id="panel-events-admin">
+<div class="admin-header">
+<h2>Events</h2>
+<button class="btn-primary">+ New Event</button>
+</div>
+<div style="
+                  background: white;
+                  border-radius: var(--radius);
+                  padding: 24px;
+                  box-shadow: var(--shadow-sm);
+                  margin-bottom: 24px;
+                ">
+<h4 style="margin-bottom: 16px">Create / Edit Event</h4>
+<div style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 16px;
+                  ">
+<div class="form-group">
+<label>Event Title</label><input placeholder="Event name..." type="text"/>
+</div>
+<div class="form-group">
+<label>Category</label><select>
+<option>Special</option>
+<option>Quarterly</option>
+<option>Monthly</option>
+<option>Mid-Week</option>
+</select>
+</div>
+<div class="form-group">
+<label>Date</label><input type="date"/>
+</div>
+<div class="form-group">
+<label>Venue</label><input placeholder="Location..." type="text"/>
+</div>
+</div>
+<div class="form-group">
+<label>Description</label><textarea placeholder="Full event description..." style="min-height: 100px"></textarea>
+</div>
+<div class="form-group">
+<label>Poster Image</label><input accept="image/*" type="file"/>
+</div>
+<button class="btn-primary">Save Event</button>
+</div>
+<table class="admin-table">
+<thead>
+<tr>
+<th>Title</th>
+<th>Category</th>
+<th>Date</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>40-Day Prayer &amp; Fasting Revival</td>
+<td><span class="tag-red card-tag">Special</span></td>
+<td>Mar 1 – Apr 9</td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+<tr>
+<td>39th Annual Convention</td>
+<td><span class="tag-yellow card-tag">Quarterly</span></td>
+<td>Mar 15–17</td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+<tr>
+<td>Youth Breakfast &amp; Mentoring</td>
+<td><span class="tag-green card-tag">Monthly</span></td>
+<td>Mar 8</td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+<tr>
+<td>Virtuous Women Fellowship</td>
+<td><span class="tag-green card-tag">Monthly</span></td>
+<td>Mar 1</td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Sermons Panel -->
+<div class="admin-panel" id="panel-sermons-admin">
+<div class="admin-header">
+<h2>Sermons</h2>
+<button class="btn-primary">+ Add Sermon</button>
+</div>
+<div style="
+                  background: white;
+                  border-radius: var(--radius);
+                  padding: 24px;
+                  box-shadow: var(--shadow-sm);
+                  margin-bottom: 24px;
+                ">
+<h4 style="margin-bottom: 16px">Add / Edit Sermon</h4>
+<div style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 16px;
+                  ">
+<div class="form-group">
+<label>Sermon Title</label><input placeholder="Title..." type="text"/>
+</div>
+<div class="form-group">
+<label>Preacher</label><input placeholder="Speaker name..." type="text"/>
+</div>
+<div class="form-group">
+<label>Date</label><input type="date"/>
+</div>
+<div class="form-group">
+<label>Category</label><select>
+<option>Faith</option>
+<option>Prayer</option>
+<option>Growth</option>
+<option>Family</option>
+<option>Prophecy</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label>YouTube / Media URL</label><input placeholder="https://youtube.com/watch?v=..." type="url"/>
+</div>
+<div class="form-group">
+<label>Sermon Notes (PDF)</label><input accept=".pdf" type="file"/>
+</div>
+<button class="btn-primary">Save Sermon</button>
+</div>
+<table class="admin-table">
+<thead>
+<tr>
+<th>Title</th>
+<th>Preacher</th>
+<th>Date</th>
+<th>Category</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The Anatomy of a Breakthrough</td>
+<td>Pst. David Adeyemi</td>
+<td>Feb 16</td>
+<td><span class="tag-green card-tag">Faith</span></td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+<tr>
+<td>When Prayer Changes Nothing</td>
+<td>Pst. David Adeyemi</td>
+<td>Feb 9</td>
+<td><span class="tag-red card-tag">Prayer</span></td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+<tr>
+<td>Marriage: Building on the Right Foundation</td>
+<td>Pst. Grace Adeyemi</td>
+<td>Feb 2</td>
+<td><span class="tag-yellow card-tag">Family</span></td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Resources Panel -->
+<div class="admin-panel" id="panel-resources-admin">
+<div class="admin-header">
+<h2>Resources</h2>
+<button class="btn-primary">+ Add Resource</button>
+</div>
+<table class="admin-table">
+<thead>
+<tr>
+<th>Title</th>
+<th>Category</th>
+<th>Size</th>
+<th>Uploaded</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sunday Bulletin — Feb 22, 2026</td>
+<td><span class="tag-green card-tag">Bulletin</span></td>
+<td>450 KB</td>
+<td>Feb 21</td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+<tr>
+<td>Daily Devotional — February 2026</td>
+<td><span class="tag-red card-tag">Devotional</span></td>
+<td>1.2 MB</td>
+<td>Jan 31</td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+<tr>
+<td>Annual Convention Programme 2026</td>
+<td><span class="tag-yellow card-tag">Programme</span></td>
+<td>2.1 MB</td>
+<td>Feb 10</td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+<tr>
+<td>Youth Camp Application Form 2026</td>
+<td><span class="tag-silver card-tag">Form</span></td>
+<td>120 KB</td>
+<td>Feb 10</td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+<tr>
+<td>40-Day Fasting Prayer Guide</td>
+<td>
+<span class="tag-green card-tag">Announcement</span>
+</td>
+<td>800 KB</td>
+<td>Feb 20</td>
+<td class="admin-actions">
+<button class="admin-btn edit">Edit</button><button class="admin-btn delete">Delete</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Upload Panel -->
+<div class="admin-panel" id="panel-upload">
+<div class="admin-header">
+<h2>Upload Files</h2>
+</div>
+<div style="max-width: 640px">
+<div class="upload-zone" onclick="this.querySelector('input').click()">
+<input accept=".pdf,.docx,.jpg,.png,.mp3,.mp4" multiple="" style="display: none" type="file"/>
+<div class="upload-zone-icon">☁️</div>
+<p><strong>Click to upload</strong> or drag and drop here</p>
+<p style="font-size: 0.8rem; margin-top: 6px">
+                    Allowed: PDF, DOCX, JPG, PNG, MP3, MP4 · Max 50 MB per file
+                  </p>
+</div>
+<div style="
+                    background: white;
+                    border-radius: var(--radius);
+                    padding: 24px;
+                    box-shadow: var(--shadow-sm);
+                  ">
+<h4 style="margin-bottom: 16px">File Details</h4>
+<div class="form-group">
+<label>File Title</label><input placeholder="Human-readable title..." type="text"/>
+</div>
+<div class="form-group">
+<label>Category</label>
+<select>
+<option>Bulletin</option>
+<option>Devotional</option>
+<option>Programme</option>
+<option>Form</option>
+<option>Announcement</option>
+<option>Media</option>
+</select>
+</div>
+<div class="form-group">
+<label>Description</label><textarea placeholder="Brief description for visitors..." style="min-height: 80px"></textarea>
+</div>
+<button class="btn-primary">Upload &amp; Publish</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<%- include('../partials/footer') %>
+<%- include('../partials/scripts') %>
