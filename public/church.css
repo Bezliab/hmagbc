@@ -68,27 +68,21 @@ select {
 .watermark-bg {
   position: relative;
 }
+/* When logo is available, replace above with a subtle watermark background.
+   Note: Express serves `public/` at the web root, so images in `public/img` are
+   reachable at `/img/...` not `/public/img/...`. */
 .watermark-bg::before {
-  content: "✦";
-  font-size: 500px;
+  content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.03;
-  color: var(--green);
+  inset: 0;
   pointer-events: none;
   z-index: 0;
-  font-family: var(--font-head);
-  line-height: 1;
+  background-image: url("/img/logo.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.05;
 }
-/* When logo is available, replace above with: */
-/* .watermark-bg::before {
-    content: '';
-    background: url('/logo.png') center/contain no-repeat;
-    opacity: 0.05;
-    ...
-  } */
 
 /* ============================
      NAVIGATION
@@ -127,6 +121,7 @@ select {
 .nav-logo-icon {
   width: 42px;
   height: 42px;
+  /* padding: 2px; */
   background: var(--green);
   border-radius: 50%;
   display: flex;
@@ -135,6 +130,16 @@ select {
   color: white;
   font-size: 20px;
 }
+
+/* Make sure the logo image fits inside the circular nav icon */
+/* .nav-logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 1px;
+  display: block;
+} */
 .nav-logo-text {
   font-family: var(--font-head);
   font-size: 1.15rem;
@@ -308,9 +313,17 @@ select {
   font-family: var(--font-head);
   pointer-events: none;
 }
+.hero-inner-content {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  margin: 0 auto;
+  padding: 0 24px;
+  justify-content: space-between;
+  z-index: 1;
+}
 .hero-inner {
   max-width: 1200px;
-  margin: 0 6.4rem;
+  margin: 0 auto;
   padding: 80px 24px;
   position: relative;
   z-index: 1;
@@ -452,7 +465,11 @@ select {
   background: var(--red-light);
   transform: translateY(-1px);
 }
-
+.hero-decor-img {
+  width: auto;
+  height: 100%;
+  transition: all ease-in-out 0.3s;
+}
 /* ============================
      SECTION COMMONS
   ============================ */
@@ -1650,10 +1667,15 @@ footer {
   animation-delay: 0.5s;
 }
 
-
 /* ============================
    MULTI-PAGE OVERRIDE
    (so .page sections are visible on separate HTML files)
    ============================ */
-.page{display:block;min-height:100vh;padding-top:var(--nav-h);} 
-.page.active{display:block;}
+.page {
+  display: block;
+  min-height: 100vh;
+  padding-top: var(--nav-h);
+}
+.page.active {
+  display: block;
+}

@@ -1,45 +1,54 @@
 <nav id="nav">
-<div class="nav-inner">
-<a class="nav-logo" href="/" style="cursor: pointer">
-<div class="nav-logo-icon">✦</div>
-<div class="nav-logo-text">
-            His Mercy and Glory Bible
-            <span>Church · Est. 2006</span>
-</div>
-</a>
-<div class="nav-links">
-<a class="nav-link active" href="/">Home</a>
-<a class="nav-link" href="/about">About</a>
-<a class="nav-link" href="/services">Services</a>
-<a class="nav-link" href="/events">Events</a>
-<a class="nav-link" href="/sermons">Sermons</a>
-<a class="nav-link" href="/resources">Resources</a>
-<a class="nav-link" href="/contact">Contact</a>
-<a class="nav-link" href="/admin">Admin</a>
-</div>
-<button aria-label="Menu" class="hamburger" id="hamburger" onclick="toggleMenu()">
-<span></span><span></span><span></span>
-</button>
-</div>
+  <div class="nav-inner">
+    <a class="nav-logo" href="/" style="cursor: pointer">
+      <div class="nav-logo-icon">
+        <img src="/img/logo.png" alt="Logo" />
+      </div>
+      <div class="nav-logo-text">
+        His Mercy and Glory Bible
+        <span>Church · Est. 2006</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link active" href="/">Home</a>
+      <a class="nav-link" href="/about">About</a>
+      <a class="nav-link" href="/services">Services</a>
+      <a class="nav-link" href="/events">Events</a>
+      <a class="nav-link" href="/sermons">Sermons</a>
+      <a class="nav-link" href="/resources">Resources</a>
+      <a class="nav-link" href="/contact">Contact</a>
+      <a class="nav-link" href="/admin">Admin</a>
+    </div>
+    <button
+      aria-label="Menu"
+      class="hamburger"
+      id="hamburger"
+      onclick="toggleMenu()"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
-<a class="mobile-link" href="/">🏠 Home</a>
-<a class="mobile-link" href="/about">📖 About</a>
-<a class="mobile-link" href="/services">🗓 Services</a>
-<a class="mobile-link" href="/events">📅 Events</a>
-<a class="mobile-link" href="/sermons">🎙 Sermons</a>
-<a class="mobile-link" href="/resources">📁 Resources</a>
-<a class="mobile-link" href="/contact">✉️ Contact</a>
-<a class="mobile-link" href="/admin">🔒 Admin</a>
+  <a class="mobile-link" href="/">🏠 Home</a>
+  <a class="mobile-link" href="/about">📖 About</a>
+  <a class="mobile-link" href="/services">🗓 Services</a>
+  <a class="mobile-link" href="/events">📅 Events</a>
+  <a class="mobile-link" href="/sermons">🎙 Sermons</a>
+  <a class="mobile-link" href="/resources">📁 Resources</a>
+  <a class="mobile-link" href="/contact">✉️ Contact</a>
+  <a class="mobile-link" href="/admin">🔒 Admin</a>
 </div>
 <script>
-  (function() {
-    const path = window.location.pathname.replace(/\/$/, '') || '/';
-    const links = document.querySelectorAll('#nav a.nav-link, #mobile-menu a.mobile-link');
-    links.forEach(a => {
-      const href = (a.getAttribute('href') || '').replace(/\/$/, '') || '/';
-      if (href === path) a.classList.add('active');
-      else a.classList.remove('active');
+  (function () {
+    const path = window.location.pathname.replace(/\/$/, "") || "/";
+    const links = document.querySelectorAll(
+      "#nav a.nav-link, #mobile-menu a.mobile-link",
+    );
+    links.forEach((a) => {
+      const href = (a.getAttribute("href") || "").replace(/\/$/, "") || "/";
+      if (href === path) a.classList.add("active");
+      else a.classList.remove("active");
     });
   })();
 </script>
