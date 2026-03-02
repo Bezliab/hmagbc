@@ -140,6 +140,7 @@ select {
   padding: 1px;
   display: block;
 } */
+
 .nav-logo-text {
   font-family: var(--font-head);
   font-size: 1.15rem;
@@ -344,8 +345,7 @@ select {
   margin-bottom: 24px;
 }
 .hero-badge::before {
-  content: "✦";
-  font-size: 10px;
+  content: none;
 }
 .hero h1 {
   font-family: var(--font-head);
@@ -381,7 +381,7 @@ select {
   font-size: 0.9rem;
 }
 .service-time::before {
-  content: "🕐";
+  content: none;
 }
 .hero-ctas {
   display: flex;

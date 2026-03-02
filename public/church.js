@@ -86,3 +86,48 @@ document.querySelectorAll(".filter-btn").forEach((btn) => {
     }
   });
 });
+
+// Sermons filter (search + category)
+function filterSermons(cat) {
+  const container = document.getElementById("page-sermons");
+  if (!container) return;
+  const search = (
+    container.querySelector(".filter-bar input")?.value || ""
+  ).toLowerCase();
+  const activeCat =
+    (cat && cat !== "all") ||
+    container
+      .querySelector(".filter-bar .filter-btn.active")
+      ?.textContent?.trim() ||
+    "all";
+
+  container.querySelectorAll(".sermon-item").forEach((item) => {
+    const metaTag =
+      item.querySelector(".card-tag")?.textContent?.trim().toLowerCase() || "";
+    const matchesCat =
+      activeCat === "all" || metaTag === activeCat.toLowerCase();
+    const matchesSearch =
+      !search || item.innerText.toLowerCase().includes(search);
+    item.style.display = matchesCat && matchesSearch ? "" : "none";
+  });
+}
+
+// Wire up sermons filter inputs/buttons when on sermons page
+document.addEventListener("DOMContentLoaded", () => {
+  const page = document.getElementById("page-sermons");
+  if (!page) return;
+  const input = page.querySelector(".filter-bar input");
+  if (input) {
+    input.addEventListener("input", () => filterSermons());
+  }
+  page.querySelectorAll(".filter-bar .filter-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // allow existing behaviour to toggle active class; then filter
+      page
+        .querySelectorAll(".filter-bar .filter-btn")
+        .forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      filterSermons(btn.textContent.trim());
+    });
+  });
+});
