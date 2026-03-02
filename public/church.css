@@ -732,7 +732,8 @@ h2.section-title {
 }
 .vmc-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  /* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 .vmc-card {
@@ -756,7 +757,7 @@ h2.section-title {
 }
 .vmc-card p {
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: var(--text);
   line-height: 1.7;
 }
 .leadership-grid {
