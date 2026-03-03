@@ -546,6 +546,19 @@ h2.section-title {
   font-size: 2rem;
   margin-bottom: 14px;
 }
+
+/* Utility for inline icons from Font Awesome */
+.icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Larger icon inside leader photo */
+.leader-photo .icon {
+  font-size: 3.5rem;
+}
 .card-title {
   font-family: var(--font-head);
   font-size: 1.2rem;
@@ -1097,6 +1110,10 @@ h2.section-title {
   min-height: 140px;
 }
 .contact-info-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
 }
 .contact-info-card {
   background: var(--green-pale);
