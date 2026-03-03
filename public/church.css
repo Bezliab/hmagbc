@@ -20,7 +20,6 @@
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
   --radius: 12px;
   --radius-lg: 20px;
-  --font-head: "Cormorant Garamond", Georgia, serif;
   --font-body: "DM Sans", system-ui, sans-serif;
   --nav-h: 72px;
 }
@@ -1152,7 +1151,7 @@ h2.section-title {
   margin-top: 2px;
 }
 .map-placeholder {
-  height: 220px;
+  height: 320px;
   background: linear-gradient(135deg, #d4e8da, #c0dbc8);
   border-radius: var(--radius);
   display: flex;
@@ -1486,9 +1485,9 @@ footer {
   margin-bottom: 10px;
   cursor: pointer;
   transition: color 0.2s;
-}
-.footer-link:hover {
-  color: white;
+  display: block; /* make the whole line clickable */
+  padding: 6px 0;
+  position: relative;
 }
 .footer-service-row {
   font-size: 0.82rem;

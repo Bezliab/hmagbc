@@ -21,7 +21,7 @@
           </div>
           <div class="form-group">
             <label>Phone Number (optional)</label>
-            <input placeholder="+234 000 000 0000" type="tel" />
+            <input placeholder="+234 703 943 2323" type="tel" />
           </div>
           <div class="form-group">
             <label>Subject</label>
@@ -40,6 +40,7 @@
             <textarea
               placeholder="Share your message, prayer request, or inquiry..."
               required=""
+              style="height: 370px"
             ></textarea>
           </div>
           <button
@@ -47,7 +48,12 @@
             onclick="submitContact()"
             style="width: 100%; justify-content: center"
           >
-            <i class="fa fa-paper-plane" aria-hidden="true"></i> Send Message
+            <i
+              class="fa fa-paper-plane"
+              aria-hidden="true"
+              style="width: fit-content"
+            ></i>
+            Send Message
           </button>
           <div class="form-success" id="contact-success">
             <i class="fa fa-check-circle" aria-hidden="true"></i> Thank you!
@@ -63,8 +69,8 @@
               </div>
               <div>
                 <div class="info-label">Address</div>
-                <div class="info-val">
-                  15 Covenant Way, GRA Phase 2<br />Lagos State, Nigeria
+                <div class="info-val" id="contact-address">
+                  No 10 Aanuoluwapo Lane 2, Ogunremi, Gbopa<br />Oyo, Nigeria
                 </div>
               </div>
             </div>
@@ -75,7 +81,7 @@
               <div>
                 <div class="info-label">Phone</div>
                 <div class="info-val">
-                  +234 801 234 5678<br />+234 802 345 6789
+                  +234 703 943 2323<br />+234 701 000 4135
                 </div>
               </div>
             </div>
@@ -86,7 +92,7 @@
               <div>
                 <div class="info-label">Email</div>
                 <div class="info-val">
-                  hello@gracecovenantchurch.org<br />admin@gracecovenantchurch.org
+                  kingdomofhismercyandglory@gmail.com<br />admin@hismercyandglory.org
                 </div>
               </div>
             </div>
@@ -97,22 +103,58 @@
               <div>
                 <div class="info-label">Service Times</div>
                 <div class="info-val">
-                  Sunday: 7:30 AM &amp; 10:00 AM<br />Wednesday: 6:00 PM<br />Friday:
-                  7:00 PM
+                  Sunday: 8:00 am<br />Tuesday: 5:00 pm
                 </div>
               </div>
             </div>
           </div>
           <div class="map-placeholder">
-            <i class="fa fa-map" aria-hidden="true"></i> Google Map Embed Goes
-            Here
+            <iframe
+              id="contact-map-iframe"
+              title="His Mercy and Glory Bible Church - Map"
+              src="https://www.google.com/maps?q=CRRC%2B8G6&z=17&output=embed"
+              width="100%"
+              height="100%"
+              style="border: 0; border-radius: var(--radius)"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <!-- Local SVG fallback (hidden by default) -->
+            <img
+              id="map-fallback"
+              src="/img/map-fallback.svg"
+              alt="Map fallback"
+              style="
+                display: none;
+                width: 100%;
+                height: 100%;
+                border-radius: var(--radius);
+                object-fit: cover;
+              "
+            />
           </div>
           <div
             style="display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap"
           >
-            <button class="btn-outline" style="flex: 1">Facebook</button>
-            <button class="btn-outline" style="flex: 1">YouTube</button>
-            <button class="btn-outline" style="flex: 1">Instagram</button>
+            <button
+              class="btn-outline"
+              style="flex: 1; justify-content: center"
+            >
+              Facebook
+            </button>
+            <button
+              class="btn-outline"
+              style="flex: 1; justify-content: center"
+            >
+              YouTube
+            </button>
+            <button
+              class="btn-outline"
+              style="flex: 1; justify-content: center"
+            >
+              Instagram
+            </button>
           </div>
         </div>
       </div>

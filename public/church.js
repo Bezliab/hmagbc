@@ -14,6 +14,44 @@ window.addEventListener("scroll", () => {
     .classList.toggle("scrolled", window.scrollY > 10);
 });
 
+// Wire map fallback and Open in Google Maps link on contact page
+document.addEventListener("DOMContentLoaded", () => {
+  const page = document.getElementById("page-contact");
+  if (!page) return;
+  const addressEl = document.getElementById("contact-address");
+  const openLink = document.getElementById("open-google-maps");
+  const iframe = document.getElementById("contact-map-iframe");
+  const fallback = document.getElementById("map-fallback");
+
+  if (addressEl && openLink) {
+    const addr = addressEl.innerText
+      .replace(/\n/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    const q = encodeURIComponent(addr);
+    openLink.href = `https://www.google.com/maps/search/?api=1&query=${q}`;
+  }
+
+  if (iframe) {
+    // show fallback if iframe doesn't load within 6s
+    let loaded = false;
+    const timeout = setTimeout(() => {
+      if (!loaded) {
+        try {
+          iframe.style.display = "none";
+        } catch (e) {}
+        if (fallback) fallback.style.display = "block";
+      }
+    }, 6000);
+    iframe.addEventListener("load", () => {
+      loaded = true;
+      clearTimeout(timeout);
+      if (fallback) fallback.style.display = "none";
+      iframe.style.display = "";
+    });
+  }
+});
+
 // Random Bible verse loader (fetches a random verse and updates the home quote)
 function loadRandomVerse() {
   const verseEl = document.getElementById("inspirational-verse");
