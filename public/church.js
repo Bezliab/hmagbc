@@ -14,6 +14,56 @@ window.addEventListener("scroll", () => {
     .classList.toggle("scrolled", window.scrollY > 10);
 });
 
+// Random Bible verse loader (fetches a random verse and updates the home quote)
+function loadRandomVerse() {
+  const verseEl = document.getElementById("inspirational-verse");
+  const refEl = document.getElementById("inspirational-ref");
+  if (!verseEl || !refEl) return;
+  // show loading state
+  const previous = verseEl.textContent;
+  verseEl.textContent = "Loading verse...";
+  refEl.textContent = "";
+
+  fetch("https://labs.bible.org/api/?passage=random&type=json")
+    .then((res) => {
+      if (!res.ok) throw new Error("Network response was not ok");
+      return res.json();
+    })
+    .then((data) => {
+      if (!Array.isArray(data) || data.length === 0)
+        throw new Error("No verse returned");
+      const v = data[0];
+      // API returns plain text in `text` and metadata bookname/chapter/verse
+      const text = (v.text || "").replace(/\s+/g, " ").trim();
+      verseEl.textContent = text || previous;
+      const version = v.version || "KJV";
+      refEl.textContent = `${v.bookname} ${v.chapter}:${v.verse} · ${version}`;
+    })
+    .catch((err) => {
+      console.error("loadRandomVerse error:", err);
+      verseEl.textContent =
+        previous ||
+        "For where two or three are gathered together in my name, there am I in the midst of them.";
+      refEl.textContent = "Matthew 18:20 · King James Version";
+    });
+}
+
+// Wire random verse loader on the home page (initial load + click to refresh)
+document.addEventListener("DOMContentLoaded", () => {
+  const page = document.getElementById("page-home");
+  if (!page) return;
+  // initial load
+  loadRandomVerse();
+  // clicking the quote decor or the verse toggles a new random verse
+  const decor = document.getElementById("quote-decor");
+  if (decor) decor.addEventListener("click", loadRandomVerse);
+  const verseBlock = document.getElementById("inspirational-verse");
+  if (verseBlock) {
+    verseBlock.style.cursor = "pointer";
+    verseBlock.addEventListener("click", loadRandomVerse);
+  }
+});
+
 // Event filter
 let currentCat = "all";
 function filterEvents(cat, btn) {

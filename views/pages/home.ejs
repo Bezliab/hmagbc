@@ -376,13 +376,17 @@
   >
     <div class="container">
       <div
+        id="quote-decor"
+        role="button"
+        title="Click to load a random Bible verse"
         style="
           font-size: 2.5rem;
           margin-bottom: 16px;
           color: var(--yellow-light);
+          cursor: pointer;
         "
       >
-        ❝
+        <i class="fa fa-quote-left" aria-hidden="true"></i>
       </div>
       <blockquote
         style="
@@ -394,11 +398,15 @@
           margin: 0 auto 16px;
           line-height: 1.4;
         "
+        id="inspirational-verse"
       >
         For where two or three are gathered together in my name, there am I in
         the midst of them.
       </blockquote>
-      <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.6)">
+      <p
+        id="inspirational-ref"
+        style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.6)"
+      >
         Matthew 18:20 · King James Version
       </p>
     </div>
