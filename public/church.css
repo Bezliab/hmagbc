@@ -1271,6 +1271,7 @@ h2.section-title {
 .admin-actions {
   display: flex;
   gap: 8px;
+  justify-content: center;
 }
 .admin-btn {
   padding: 6px 12px;
